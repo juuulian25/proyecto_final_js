@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapas Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" defer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+    <script src="js/miarchivo.js" defer></script>
+</head>
+<body class="body">
+    <header>
+        <nav>
+            <ul class="flex__nav">    
+                <li class="flex__nav__hijo">Ofertas</li>           
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+     
+        <h1>Zapas Center</h1>
+            <div>
+                <h4 id="contadorTotalId"></h4>
+            </div>
+        <h2>Nuestras Zapatillas</h2>
+        <section class="seccion encabeZado">
+                <div id="catalogo" class="card-group">
+                </div>
+                <div>
+                    <button id="vaciarCarrito">Vaciar Carrito</button>
+                </div>
+                 <div id="seccion-card"></div>
+        </section>
+        <section class="seccion encabeZado">
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                    <th>POSICION</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre Zapatilla:</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad Producto</th>
+                    <th id="sacarDelCarrito" scope="col">Click para sacar del carrito</th>
+                    <th id="totalCarrito" scope="col">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaProductosAgregados" class="table-group-divider"></tbody>
+            </table>                
+        </section> 
+        <section>
+            <div id="listaVacia"></div> 
+        </section>
+        
+            
+    </main>
+</body>
+</html>
