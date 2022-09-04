@@ -1,7 +1,7 @@
 [
-    {"id":1 ,"marca": "Nike", "precio": 300, "stock": 3, "precioPorCantidad": 0, "seleccionado":""},
-    {"id":2 ,"marca": "Adidas", "precio": 200, "stock": 5, "precioPorCantidad": 0, "seleccionado":""},
-    {"id":3 ,"marca": "Fila", "precio": 250, "stock": 7, "precioPorCantidad": 0, "seleccionado":""},
-    {"id":4 ,"marca": "Puma", "precio": 550, "stock": 2, "precioPorCantidad": 0, "seleccionado":""},
-    {"id":5 ,"marca": "DC", "precio": 420, "stock": 4, "precioPorCantidad": 0, "seleccionado":""}   
+    {"imagen": "./img/zapa_nike.jpg","id":1 ,"marca": "Nike", "precio": 300, "stock": 3, "precioPorCantidad": 0, "seleccionado":""},
+    {"imagen": "./img/zapa_adidas.webp", "id":2 ,"marca": "Adidas", "precio": 200, "stock": 5, "precioPorCantidad": 0, "seleccionado":""},
+    {"imagen": "./img/zapa_fila.webp", "id":3 ,"marca": "Fila", "precio": 250, "stock": 7, "precioPorCantidad": 0, "seleccionado":""},
+    {"imagen": "./img/zapa_puma.jpg" ,"id":4 ,"marca": "Puma", "precio": 550, "stock": 2, "precioPorCantidad": 0, "seleccionado":""},
+    {"imagen": "img/zapa_dc.jpg", "id":5 ,"marca": "DC", "precio": 420, "stock": 4, "precioPorCantidad": 0, "seleccionado":""}   
 ]

@@ -11,7 +11,8 @@ function buscoProductosEnBaseDeDatos() {
                 .then(informacion => {                        
                     informacion.forEach((producto) => {
                         arrayBaseDeDatos.push(
-                            new Zapatilla(                        
+                            new Zapatilla(  
+                                producto.imagen,                      
                                 producto.id,
                                 producto.marca,
                                 producto.precio,
@@ -129,7 +130,8 @@ function darFuncionamientoAMarca(numeroID, limiteStock, precioPorCantidadZapa, t
 
 //funcion constructora de los objetos dentro del array zapas
 
-function Zapatilla (id, marca, precio, stock,  precioPorCantidad, seleccionado) {
+function Zapatilla (imagen, id, marca, precio, stock,  precioPorCantidad, seleccionado) {
+    this.imagen = imagen;
     this.id = id;
     this.marca = marca;
     this.precio = precio;
@@ -240,7 +242,7 @@ function cargarInicioAlHtml(elementosDelCatalogo){
     elementosDelCatalogo.forEach(function(zapa) {
         const htmlDeUnaCard = `
             <div class="card">
-                <img src="./img/zapas.webp" class="card-img-top" alt="Imagen"/>
+                <img src="${zapa.imagen}" class="card-img-top" alt="Imagen"/>
                 <div class="card-body">
                     <h5 id="card-title-nombre">${zapa.marca}</h5>   
                     <p>Precio unitario: $${zapa.precio}</p>
@@ -256,7 +258,7 @@ function cargarInicioAlHtml(elementosDelCatalogo){
         `;
 
         catalogo.insertAdjacentHTML('beforeend', htmlDeUnaCard);
-        darFuncionamientoAMarca(zapa.id, zapa.stock, zapa.precio, zapa.precioPorCantidad, zapa.marca, zapa.seleccionado)
+        darFuncionamientoAMarca(zapa.id, zapa.stock, zapa.precio, zapa.precioPorCantidad, zapa.marca, zapa.seleccionado, zapa.imagen)
     });
 
 } 
