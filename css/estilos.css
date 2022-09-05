@@ -43,12 +43,7 @@
 
 /*............CARD.........*/
 
-.card{
-  
-    margin: 1rem;
-    max-width: 300px;
-    height: 600px;
-}
+
 
 .seccion{
     display: flex;
@@ -74,4 +69,16 @@
     min-width: 1000px;
     max-width: 1000px;
     border: 5px solid rgba(0, 0, 0, 0.493);
+}
+
+.card-img-top {
+    max-width: 250px;
+    align-items: center;
+    align-content: center;
+}
+
+.card{  
+    margin: 1rem;
+    max-width: 280px;
+    height: 500px;
 }

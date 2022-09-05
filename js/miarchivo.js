@@ -1,7 +1,6 @@
 
-buscoProductosEnBaseDeDatos();
-
 const arrayBaseDeDatos = [];
+
 
 //fetch para buscar productos de mi base de datos
 function buscoProductosEnBaseDeDatos() {
@@ -28,7 +27,8 @@ function buscoProductosEnBaseDeDatos() {
                     })
             
     )    
-}
+};
+
 
 
 function darFuncionamientoAMarca(numeroID, limiteStock, precioPorCantidadZapa, totalAgregado, nombreZapa){
@@ -39,6 +39,7 @@ function darFuncionamientoAMarca(numeroID, limiteStock, precioPorCantidadZapa, t
     const vaciarCarrito = document.getElementById("vaciarCarrito");
     const mostrandoEnTotalAgregado = document.getElementById(`multiPrecioCantidad-${numeroID}`)
     
+
     //boton agregar al carrito
     agregarCarrito.addEventListener('click', function(){
         if (cantidad.value > 0){
@@ -47,14 +48,16 @@ function darFuncionamientoAMarca(numeroID, limiteStock, precioPorCantidadZapa, t
             const zapa =  arrayBaseDeDatos.find(zapa => zapa.id == numeroID)
             zapa.stock -= cantidadSeleccionada;
             cargarInicioAlHtml(arrayBaseDeDatos);
-            
+         
             cantidad.value = 0;            
           
             miCarrito.push( new ZapatillaSeleccionada (numeroID, nombreZapa, totalAgregado, cantidadSeleccionada));
 
             actualizarHTMLDelCarrito(miCarrito);
 
+            localStorage.setItem("miCarrito", JSON.stringify(miCarrito));
 
+            
             Toastify({
                 text: `Zapatilla ${nombreZapa} agregada con exito!`,
                 duration: 2000,
@@ -69,10 +72,7 @@ function darFuncionamientoAMarca(numeroID, limiteStock, precioPorCantidadZapa, t
                 },
                 onClick: function(){} 
               }).showToast();
-
-            const enJson = JSON.stringify(miCarrito);
             
-            localStorage.setItem("miCarrito", JSON.stringify(miCarrito));
         }
     })
 
@@ -152,19 +152,25 @@ function ZapatillaSeleccionada (id, marca, precio, cantidadSeleccionada) {
 
 //array que es lo que compraria el usuario
 
+
 let carritoGuardado = JSON.parse(localStorage.getItem("miCarrito"));
 const miCarrito = carritoGuardado ?? [];
 actualizarHTMLDelCarrito(miCarrito);
 
+buscoProductosEnBaseDeDatos().then(function(){
+    miCarrito.forEach(function(itemCarrito){
+           
+        let zapa = arrayBaseDeDatos.find(function(zapa){
+            return itemCarrito.id == zapa.id;
+        });
+        zapa.stock -= itemCarrito.cantidadSeleccionada;
+    });
+
+    cargarInicioAlHtml(arrayBaseDeDatos);
+});
 
 
-console.log(carritoGuardado, "viendo localstorage")
 
-/*
-localStorage.setItem("Piloto", JSON.stringify(miObjeto));
-//Para leer el objeto Json
-var piloto = JSON.parse(localStorage.getItem("Piloto"));
-*/
 
 
 function actualizarHTMLDelCarrito(elementosDelCarrito){
@@ -178,8 +184,6 @@ function actualizarHTMLDelCarrito(elementosDelCarrito){
     elementosDelCarrito.forEach((producto) => {        
         const htmlLineaDelCarrito = `
             <tr>
-                <td>${producto.posicion}</td>
-                <td id="columID-${producto.posicion}">${producto.id}</td>
                 <td id="columMarca-${producto.posicion}">${producto.marca}</td>
                 <td id="columPrecio-${producto.posicion}">$${producto.precio}</td>
                 <td id="columCantidad-${producto.posicion}">${producto.cantidadSeleccionada}</td>
@@ -204,6 +208,8 @@ function actualizarHTMLDelCarrito(elementosDelCarrito){
            
             objetoProbandoOriginal.stock = parseInt(objetoProbandoOriginal.stock) + parseInt(objetoCarritoEliminado.cantidadSeleccionada);
            
+          
+
             //DEVOLVER STOCK CATALOGO
             elementosDelCarrito.splice(indiceAEliminar,1);
             actualizarHTMLDelCarrito(elementosDelCarrito);
@@ -267,4 +273,3 @@ function cargarInicioAlHtml(elementosDelCatalogo){
 document.addEventListener('DOMContentLoaded', function(){
     cargarInicioAlHtml(arrayBaseDeDatos);  
 });
-
